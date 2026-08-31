@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "evidence_gate": {
+    "required_fields": ["raw_request", "raw_response"],
+    "required_level": "full_http",
+    "unknown_verdict": "无法判断",
+    "human_action_required": "是"
+  },
+  "rules": {
+    "sqli": {
+      "id": "SRH-SQLI-001",
+      "strong_patterns": [
+        "(?:%27|')\\s*(?:or|and)\\s*(?:%27|')?\\s*\\d+\\s*(?:%27|')?\\s*=\\s*(?:%27|')?\\s*\\d+",
+        "\\bunion\\s+(?:all\\s+)?select\\b",
+        "(?:--|/\\*)",
+        "\\bsleep\\s*\\("
+      ],
+      "keyword_patterns": ["\\bselect\\b", "\\bor\\b", "\\band\\b"],
+      "blocked_statuses": [403, 406, 429]
+    },
+    "xss": {
+      "id": "SRH-XSS-001",
+      "payload_patterns": ["<script", "onerror\\s*=", "javascript\\s*:"],
+      "encoded_response_patterns": ["&lt;script", "&lt;/script", "&gt;"],
+      "unencoded_response_patterns": ["<script", "</script>"]
+    },
+    "brute-force": {
+      "id": "SRH-BRUTE-001",
+      "sequence_patterns": ["guess-\\d+", "password[-_]?\\d+"],
+      "challenge_statuses": [429],
+      "human_action_required": "是"
+    },
+    "path-traversal": {
+      "id": "SRH-PATH-001",
+      "traversal_pattern": "(?:\\.\\./){2,}|%2e%2e(?:%2f|/)",
+      "sensitive_target_patterns": ["/etc/passwd", "win.ini"],
+      "blocked_statuses": [403, 406]
+    },
+    "data-exposure": {
+      "id": "SRH-DATA-001",
+      "sensitive_field_patterns": ["password", "token", "secret", "id_card", "phone"],
+      "review_length_threshold": 500,
+      "normal_status_range": [200, 299]
+    }
+  }
+}
