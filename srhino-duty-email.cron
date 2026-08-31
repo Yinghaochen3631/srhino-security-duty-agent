@@ -1,0 +1,5 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Scheduler runs at 09:00; send after it has had time to finish.
+10 9 * * * root /opt/agent-compose/send_srhino_host_email.sh >> /var/log/srhino-duty-email.log 2>&1

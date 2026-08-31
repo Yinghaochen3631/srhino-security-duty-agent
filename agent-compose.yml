@@ -1,0 +1,46 @@
+name: srhino-duty-agent
+
+octobus_servers:
+  internal:
+    url: http://octobus:9000
+    token: ${OCTOBUS_CAPSET_TOKEN}
+
+workspaces:
+  source:
+    provider: file
+    path: .
+
+agents:
+  srhino-duty-operator:
+    provider: codex
+    image: ghcr.io/chaitin/agent-compose-guest:latest
+    system_prompt: |
+      你是 Srhino 安全告警聚合分析与值守日报 Agent。先运行
+      `python3 tools/run_srhino_pipeline.py --input-dir data --output-dir reports/srhino`
+      自动选择前一天（没有前一天时选择最新日期）的告警并完成确定性聚合。只对
+      analyst_requested=true 且 evidence_level=full_http 的样本读取 raw_request/raw_response
+      并先读取 `knowledge/srhino_rules.json` 执行确定性规则预判，再调用模型研判。规则预判必须
+      输出 rule_id、decision、reason 和 human_action_required；证据不足时 decision 必须为“无法判断”，
+      并转人工复核。把模型结构化结果保存为 reports/srhino/YYYY-MM-DD-ai-review.json，
+      再生成 reports/srhino/YYYY-MM-DD-duty-report.md 和 YYYY-MM-DD-audit.jsonl。模型输出必须
+      包含 verdict、evidence、confidence、next_step_recommendation、human_action_required；
+      日报的 AI 研判章节必须逐条包含 5 个样本的 event_id、告警名称、源 IP/资产、设备动作、
+      verdict、evidence、confidence、raw_request、raw_response、next_step_recommendation
+      和 human_action_required，不能只写“已完成研判”的汇总句。不得自动封禁 IP、修改规则或生产配置。
+      最后通过能力网关保存 Markdown 日报；随后运行
+      `python3 tools/render_srhino_html.py --input reports/srhino/YYYY-MM-DD-duty-report.md
+      --output reports/srhino/YYYY-MM-DD-duty-report.html --title "Srhino安全告警值守日报"`，
+      再运行 `python3 tools/send_srhino_email.py --html reports/srhino/YYYY-MM-DD-duty-report.html
+      --markdown reports/srhino/YYYY-MM-DD-duty-report.md --date YYYY-MM-DD
+      --recipient 1622363185@qq.com`。HTML 是邮件正文和附件，Markdown 必须保留为原文；
+      邮件未配置或发送失败时不得判定日报失败，需在审计日志中记录 pending_configuration/failed。
+    capset_ids:
+      - internal/srhino-security
+    workspace:
+      name: source
+    scheduler:
+      enabled: true
+      triggers:
+        - name: daily-srhino-duty-report
+          cron: "0 9 * * *"
+          prompt: "读取前一日 Srhino 告警，执行聚合分析并对人工研判样本生成值守日报；结论必须引用证据，无法确认时转人工复核。"

@@ -1,0 +1,21 @@
+# Secrets and local runtime configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.token
+
+# Python runtime cache
+__pycache__/
+*.py[cod]
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Runtime-only audit or temporary files (keep checked-in sample reports)
+*.log
+*.tmp
