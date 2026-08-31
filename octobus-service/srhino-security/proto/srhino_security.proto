@@ -1,0 +1,19 @@
+syntax = "proto3";
+package security.srhino.v1;
+
+service SrhinoSecurityService {
+  rpc ListSrhinoAlerts(ListSrhinoAlertsRequest) returns (ListSrhinoAlertsResponse);
+  rpc GetSrhinoAlertEvidence(GetSrhinoAlertEvidenceRequest) returns (SrhinoAlertEvidence);
+  rpc CreateAlertReviewTask(CreateAlertReviewTaskRequest) returns (AlertReviewTaskResponse);
+  rpc SendSrhinoDutyReport(SendSrhinoDutyReportRequest) returns (SrhinoDutyReportResponse);
+}
+
+message ListSrhinoAlertsRequest { string report_date = 1 [json_name = "reportDate"]; }
+message ListSrhinoAlertsResponse { repeated SrhinoAlert alerts = 1; }
+message SrhinoAlert { string event_id = 1 [json_name = "eventId"]; string timestamp = 2; string severity = 3; string alert_name = 4 [json_name = "alertName"]; string source_ip = 5 [json_name = "sourceIp"]; string destination_asset = 6 [json_name = "destinationAsset"]; string action = 7; }
+message GetSrhinoAlertEvidenceRequest { string event_id = 1 [json_name = "eventId"]; }
+message SrhinoAlertEvidence { string event_id = 1 [json_name = "eventId"]; string raw_request = 2 [json_name = "rawRequest"]; string raw_response = 3 [json_name = "rawResponse"]; string evidence_level = 4 [json_name = "evidenceLevel"]; }
+message CreateAlertReviewTaskRequest { string event_id = 1 [json_name = "eventId"]; string reason = 2; string recommendation = 3; }
+message AlertReviewTaskResponse { string task_id = 1 [json_name = "taskId"]; string event_id = 2 [json_name = "eventId"]; string status = 3; string message = 4; }
+message SendSrhinoDutyReportRequest { string report_date = 1 [json_name = "reportDate"]; string content = 2; }
+message SrhinoDutyReportResponse { string report_id = 1 [json_name = "reportId"]; string status = 2; string message = 3; }
