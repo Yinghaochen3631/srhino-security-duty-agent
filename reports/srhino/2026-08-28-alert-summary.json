@@ -1,0 +1,406 @@
+{
+  "report_date": "2026-08-28",
+  "event_count": 240,
+  "severity_counts": {
+    "high": 40,
+    "medium": 80,
+    "low": 120
+  },
+  "category_counts": {
+    "sqli": 10,
+    "path-traversal": 12,
+    "brute-force": 10,
+    "xss": 42,
+    "scanner": 120,
+    "data-exposure": 9,
+    "api-abuse": 37
+  },
+  "action_counts": {
+    "block": 116,
+    "challenge": 44,
+    "allow": 80
+  },
+  "disposition_action_counts": {
+    "拦截": 116,
+    "人机校验": 44,
+    "放行观察": 80
+  },
+  "disposition_action_definitions": {
+    "拦截": "请求被 Srhino 直接阻断，未继续到应用",
+    "人机校验": "Srhino 要求验证码、MFA 或其他二次验证后才允许继续",
+    "放行观察": "请求正常返回，但保留告警并进入观察/复核队列"
+  },
+  "handling_status_counts": {
+    "已拦截": 116,
+    "已下发风险预警": 26,
+    "待人工复核": 63,
+    "已完成观察": 35
+  },
+  "closed_loop_status_counts": {
+    "已闭环": 176,
+    "待复核": 64
+  },
+  "warning_status_counts": {
+    "已下发": 142,
+    "未下发": 98
+  },
+  "warning_recipient_counts": {
+    "API平台主管单位": 62,
+    "Web应用责任单位": 58,
+    "OA系统责任单位": 22
+  },
+  "closed_loop_rate": 0.7333,
+  "top_assets": [
+    {
+      "name": "web-prod-02",
+      "count": 51
+    },
+    {
+      "name": "web-prod-01",
+      "count": 50
+    },
+    {
+      "name": "api-prod-01",
+      "count": 47
+    },
+    {
+      "name": "api-prod-02",
+      "count": 47
+    },
+    {
+      "name": "oa-prod-01",
+      "count": 45
+    }
+  ],
+  "top_source_ips": [
+    {
+      "name": "203.0.113.10",
+      "count": 79
+    },
+    {
+      "name": "203.0.113.11",
+      "count": 51
+    },
+    {
+      "name": "198.51.100.20",
+      "count": 41
+    },
+    {
+      "name": "192.0.2.50",
+      "count": 29
+    },
+    {
+      "name": "198.51.100.21",
+      "count": 25
+    },
+    {
+      "name": "192.0.2.51",
+      "count": 15
+    }
+  ],
+  "hourly_counts": {
+    "00": 9,
+    "01": 2,
+    "02": 1,
+    "07": 7,
+    "08": 6,
+    "09": 21,
+    "10": 32,
+    "11": 38,
+    "12": 22,
+    "14": 9,
+    "16": 5,
+    "18": 10,
+    "20": 12,
+    "22": 40,
+    "23": 26
+  },
+  "manual_review": [
+    {
+      "event_id": "SRHINO-20260828-R003",
+      "alert_name": "暴力破解登录",
+      "severity": "high",
+      "asset": "oa-prod-01",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-R004",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "web-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-R005",
+      "alert_name": "SQL注入攻击",
+      "severity": "medium",
+      "asset": "api-prod-02",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00007",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "api-prod-01",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00009",
+      "alert_name": "暴力破解登录",
+      "severity": "high",
+      "asset": "web-prod-02",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00010",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "api-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00015",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "web-prod-02",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00019",
+      "alert_name": "恶意扫描探测",
+      "severity": "low",
+      "asset": "web-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00021",
+      "alert_name": "暴力破解登录",
+      "severity": "high",
+      "asset": "web-prod-02",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00022",
+      "alert_name": "敏感数据暴露检测",
+      "severity": "high",
+      "asset": "web-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00024",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "web-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00025",
+      "alert_name": "API异常频率",
+      "severity": "medium",
+      "asset": "web-prod-01",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00027",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "oa-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00029",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "api-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00030",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "oa-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00033",
+      "alert_name": "恶意扫描探测",
+      "severity": "low",
+      "asset": "oa-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00034",
+      "alert_name": "敏感数据暴露检测",
+      "severity": "high",
+      "asset": "api-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00035",
+      "alert_name": "API异常频率",
+      "severity": "medium",
+      "asset": "api-prod-01",
+      "reason": "挑战结果需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00037",
+      "alert_name": "恶意扫描探测",
+      "severity": "low",
+      "asset": "oa-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    },
+    {
+      "event_id": "SRHINO-20260828-00040",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "asset": "api-prod-01",
+      "reason": "告警未直接拦截，需复核"
+    }
+  ],
+  "manual_review_count": 124,
+  "ai_review_candidates": [
+    {
+      "event_id": "SRHINO-20260828-R001",
+      "verdict": "真实攻击",
+      "confidence": "高",
+      "evidence": "请求体包含 admin' OR '1'='1 恒真条件，命中 SQL 注入规则；响应为 403 且设备动作是拦截。",
+      "next_step_recommendation": "保持拦截；核查同源 IP 的登录失败记录和账号是否需要重置密码。",
+      "human_action_required": "否",
+      "raw_request": "POST /api/auth/login HTTP/1.1\nHost: api-prod-01.example.test\nContent-Type: application/x-www-form-urlencoded\nUser-Agent: demo-client/1.0\n\nusername=admin%27+OR+%271%27%3D%271&password=demo",
+      "raw_response": "HTTP/1.1 403 Forbidden\nContent-Type: application/json\nX-Srhino-Action: block\n\n{\"code\":403,\"message\":\"request blocked\"}",
+      "alert_name": "SQL注入攻击",
+      "severity": "high",
+      "source_ip": "203.0.113.10",
+      "destination_asset": "api-prod-01",
+      "action": "拦截",
+      "rule_id": "SQLI-942100",
+      "rule_evaluation": {
+        "rule_id": "SRH-SQLI-001",
+        "decision": "真实攻击尝试",
+        "reason": "命中强 SQL 注入结构且设备阻断或返回阻断状态",
+        "matched_pattern": "(?:%27|')\\s*(?:or|and)\\s*(?:%27|')?\\s*\\d+\\s*(?:%27|')?\\s*=\\s*(?:%27|')?\\s*\\d+",
+        "human_action_required": "否"
+      }
+    },
+    {
+      "event_id": "SRHINO-20260828-R002",
+      "verdict": "真实攻击",
+      "confidence": "高",
+      "evidence": "请求参数包含 ../../../../etc/passwd 路径穿越序列，User-Agent 呈扫描器特征；响应为 403 并被设备阻断。",
+      "next_step_recommendation": "保持拦截；核查下载接口路径规范化和目标主机文件访问日志。",
+      "human_action_required": "否",
+      "raw_request": "GET /download?file=../../../../etc/passwd HTTP/1.1\nHost: web-prod-02.example.test\nAccept: */*\nUser-Agent: security-scanner/2.1\n\n",
+      "raw_response": "HTTP/1.1 403 Forbidden\nContent-Type: text/plain\nX-Srhino-Action: block\n\nblocked by security policy",
+      "alert_name": "路径穿越攻击",
+      "severity": "high",
+      "source_ip": "198.51.100.20",
+      "destination_asset": "web-prod-02",
+      "action": "拦截",
+      "rule_id": "LFI-930110",
+      "rule_evaluation": {
+        "rule_id": "SRH-PATH-001",
+        "decision": "真实攻击尝试",
+        "reason": "多层路径穿越指向系统敏感文件且被阻断",
+        "matched_pattern": "/etc/passwd",
+        "human_action_required": "否"
+      }
+    },
+    {
+      "event_id": "SRHINO-20260828-R003",
+      "verdict": "真实攻击（尝试）",
+      "confidence": "高",
+      "evidence": "admin 账号配合序号化口令猜测，命中暴力破解规则；响应 429 且人机校验未通过，尚未证明登录成功。",
+      "next_step_recommendation": "值守人员确认后可将人机校验升级为临时拦截，并核查管理员账号、源 IP 和 MFA 记录。",
+      "human_action_required": "是",
+      "raw_request": "POST /admin/login HTTP/1.1\nHost: oa-prod-01.example.test\nContent-Type: application/json\nX-Forwarded-For: 192.0.2.50\n\n{\"username\":\"admin\",\"password\":\"guess-017\"}",
+      "raw_response": "HTTP/1.1 429 Too Many Requests\nContent-Type: application/json\nRetry-After: 60\nX-Srhino-Action: challenge\n\n{\"error\":\"verification_required\"}",
+      "alert_name": "暴力破解登录",
+      "severity": "high",
+      "source_ip": "192.0.2.50",
+      "destination_asset": "oa-prod-01",
+      "action": "人机校验",
+      "rule_id": "BRUTE-913100",
+      "rule_evaluation": {
+        "rule_id": "SRH-BRUTE-001",
+        "decision": "真实攻击（尝试）",
+        "reason": "发现序列化口令并触发限速/人机校验，单条证据不能证明登录成功",
+        "matched_pattern": "guess-\\d+",
+        "human_action_required": "是"
+      }
+    },
+    {
+      "event_id": "SRHINO-20260828-R004",
+      "verdict": "疑似误报",
+      "confidence": "高",
+      "evidence": "请求包含 XSS 测试载荷，但响应已将 script 标签 HTML 实体编码，业务正常返回且未观察到脚本执行。",
+      "next_step_recommendation": "暂不封禁；通知 Web 应用责任单位确认统一输出编码并观察同类请求。",
+      "human_action_required": "是",
+      "raw_request": "GET /search?q=%3Cscript%3Ealert%281%29%3C%2Fscript%3E HTTP/1.1\nHost: web-prod-01.example.test\nUser-Agent: Mozilla/5.0 (compatible; demo-browser)\n\n",
+      "raw_response": "HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\nX-Srhino-Action: allow\n\n<html><body>Search results for &lt;script&gt;alert(1)&lt;/script&gt;</body></html>",
+      "alert_name": "跨站脚本攻击",
+      "severity": "medium",
+      "source_ip": "203.0.113.11",
+      "destination_asset": "web-prod-01",
+      "action": "放行观察",
+      "rule_id": "XSS-941100",
+      "rule_evaluation": {
+        "rule_id": "SRH-XSS-001",
+        "decision": "疑似误报",
+        "reason": "脚本标签已转义，且业务响应为 2xx",
+        "matched_pattern": "<script",
+        "human_action_required": "是"
+      }
+    },
+    {
+      "event_id": "SRHINO-20260828-R005",
+      "verdict": "疑似误报",
+      "confidence": "高",
+      "evidence": "SQL 关键字出现在合法商品搜索词 select shoes 中，没有引号闭合、UNION 或注释结构；响应为正常业务 JSON。",
+      "next_step_recommendation": "暂不封禁；通知 API平台主管单位核对参数化查询和业务关键词白名单。",
+      "human_action_required": "是",
+      "raw_request": "POST /api/order/search HTTP/1.1\nHost: api-prod-02.example.test\nContent-Type: application/json\nX-Request-Id: demo-r005\n\n{\"keyword\":\"select shoes\",\"sort\":\"price asc\"}",
+      "raw_response": "HTTP/1.1 200 OK\nContent-Type: application/json\nX-Srhino-Action: allow\n\n{\"total\":2,\"items\":[{\"name\":\"select shoes\",\"price\":199}]}",
+      "alert_name": "SQL注入攻击",
+      "severity": "medium",
+      "source_ip": "198.51.100.21",
+      "destination_asset": "api-prod-02",
+      "action": "放行观察",
+      "rule_id": "SQLI-942100",
+      "rule_evaluation": {
+        "rule_id": "SRH-SQLI-001",
+        "decision": "疑似误报",
+        "reason": "仅命中业务关键词，响应正常且未发现注入结构",
+        "matched_pattern": "\\bselect\\b",
+        "human_action_required": "是"
+      }
+    }
+  ],
+  "ai_review_candidate_count": 5,
+  "evidence_examples": [
+    {
+      "signature": "SQLI-942100",
+      "collection_reason": "人工点击AI研判",
+      "sanitized": true
+    },
+    {
+      "signature": "LFI-930110",
+      "collection_reason": "人工点击AI研判",
+      "sanitized": true
+    },
+    {
+      "signature": "BRUTE-913100",
+      "collection_reason": "人工点击AI研判",
+      "sanitized": true
+    },
+    {
+      "signature": "XSS-941100",
+      "collection_reason": "人工点击AI研判",
+      "sanitized": true
+    },
+    {
+      "signature": "SQLI-942100",
+      "collection_reason": "人工点击AI研判",
+      "sanitized": true
+    }
+  ]
+}
