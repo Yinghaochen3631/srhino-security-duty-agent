@@ -1,0 +1,4 @@
+{
+  "dataFile": "/opt/agent-compose/data/work/srhino-duty-agent/data/srhino-alerts-YYYY-MM-DD.jsonl",
+  "reportDir": "/opt/agent-compose/data/work/srhino-duty-agent/reports/srhino"
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "chaitin.octobus.service.v1",
+  "name": "srhino-security",
+  "displayName": "Srhino Security Alert Service",
+  "description": "Srhino alert retrieval, evidence review and duty report capabilities.",
+  "proto": { "roots": ["proto"], "files": ["proto/srhino_security.proto"] },
+  "configSchema": "config.schema.json",
+  "secretSchema": "secret.schema.json"
+}
